@@ -12,6 +12,8 @@ A basic URL shortener built with Node.js, Express.js for the backend, and simple
     * CSS - Basic styling for the user interface
 * **Storage (Initial):**
     * In-memory JavaScript object - A simple way to store URL mappings for this basic version.
+* **Storage (Intermediate):**
+    * MongoDB - A simple way to store URL mappings and its analytics for this  version.
 
 ## 🚀 Getting Started
 
