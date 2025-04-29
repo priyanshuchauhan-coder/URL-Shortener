@@ -1,0 +1,9 @@
+Step 1: Create a Folder of your desired name
+Step 2: Enter Commands in terminal to setting up the project 
+        Step 2.1 : Enter Command `npm init -y `
+        Step 2.2 : Enter command `npm install express`
+Step 3: Create `server.js` where we will write the backend code
+Step 4: Import the required modules and install also like 'express','body-parser','nanoid' 
+Step 5: I have used nanoid instead of uuidv4 , shortid because it is fast and also takes less space
+Step 6: First We will apply in memory storage and  create a branch to push in and another branch for database setup
+
