@@ -1,66 +1,110 @@
 body {
-    font-family: sans-serif;
+    font-family: 'Inter', sans-serif;
+    background: #fefefe;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-color: #f4f4f4;
+    height: 100vh;
     margin: 0;
-}
-
-.container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+  }
+  
+  .container {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    max-width: 400px;
+    width: 100%;
     text-align: center;
-}
-
-h1 {
+  }
+  
+  .logo {
+    font-size: 48px;
+    color: #4a90e2;
+    margin-bottom: 0.5rem;
+  }
+  
+  .title {
+    font-size: 24px;
+    margin-bottom: 1.5rem;
     color: #333;
-    margin-bottom: 20px;
-}
-
-.input-group {
+  }
+  
+  .input-group {
     display: flex;
-    margin-bottom: 20px;
-}
-
-input[type="url"] {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .input-group input {
+    padding: 12px 16px;
+    border: 2px solid #d0d0d0;
+    border-radius: 8px;
     font-size: 16px;
-}
-
-button {
-    background-color: #007bff;
+    outline: none;
+  }
+  
+  .input-group button {
+    padding: 12px;
+    background: #4a90e2;
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
+    border-radius: 8px;
     font-size: 16px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-#result {
-    margin-top: 20px;
-}
-
-#result.hidden {
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .result p {
+    margin: 0;
+    font-weight: 500;
+    color: #2c3e50;
+  }
+  
+  .result a {
+    color: #2c3e50;
+    word-break: break-word;
+    font-weight: 600;
+  }
+  
+  .copy-btn {
+    padding: 8px 16px;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .hidden {
     display: none;
-}
-
-#shortenedLink {
-    color: #007bff;
-    text-decoration: none;
-}
-
-#shortenedLink:hover {
-    text-decoration: underline;
-}
+  }
+  
+  /* Responsive */
+  @media (max-width: 500px) {
+    .container {
+      padding: 1.5rem;
+    }
+  
+    .title {
+      font-size: 20px;
+    }
+  
+    .input-group input,
+    .input-group button {
+      font-size: 14px;
+    }
+  
+    .logo {
+      font-size: 36px;
+    }
+  }
