@@ -1,4 +1,4 @@
-body {
+/* body {
     font-family: 'Inter', sans-serif;
     background: #fefefe;
     display: flex;
@@ -7,22 +7,91 @@ body {
     height: 100vh;
     margin: 0;
     padding: 1rem;
-  }
+  } */
 
+  body {
+    font-family: 'Inter', sans-serif;
+    background: transparent; /* Background now handled by .container */
+    min-height: 100vh;
+    margin: 0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* overflow-x: hidden; */
+    position: relative;
+  }
+  html, body {
+    overflow-x: clip; /* better than hidden for modern browsers */
+    height: 100%;
+  }
+  .custom-navbar {
+    background-color: #1a1a40; /* Replace with your desired color */
+    color: white;
+  }
+  
   .navbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background: #4a90e2;
-    color: white;
+    background: #77d3bc;
+    color: black;
     padding: 1rem;
     text-align: center;
     font-size: 18px;
   }
   
   /* From Uiverse.io by SelfMadeSystem */ 
-.container {
+
+  .container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+  
+    --c: 7px;
+    background-color: #ded6d6;
+    background-image: radial-gradient(
+        circle at 50% 50%,
+        #0000 1.5px,
+        #000 0 var(--c),
+        #0000 var(--c)
+      ),
+      radial-gradient(
+        circle at 50% 50%,
+        #0000 1.5px,
+        #000 0 var(--c),
+        #0000 var(--c)
+      ),
+      radial-gradient(circle at 50% 50%, #f00, #f000 60%),
+      radial-gradient(circle at 50% 50%, #ff0, #ff00 60%),
+      radial-gradient(circle at 50% 50%, #0f0, #0f00 60%),
+      radial-gradient(ellipse at 50% 50%, #00f, #00f0 60%);
+    /* background-size:
+      12px 20.7846097px,
+      12px 20.7846097px,
+      200% 200%,
+      200% 200%,
+      200% 200%,
+      200% 20.7846097px;
+    --p: 0px 0px, 6px 10.39230485px; */
+    background-position:
+      var(--p),
+      0% 0%,
+      0% 0%,
+      0% 0px;
+    animation:
+      wee 40s linear infinite,
+      filt 6s linear infinite;
+      max-width: 100%;
+  }
+  
+  
+
+/* .container {
   position: absolute;
   inset: -1em;
   --c: 7px;
@@ -59,7 +128,7 @@ body {
   animation:
     wee 40s linear infinite,
     filt 6s linear infinite;
-}
+} */
 
 @keyframes filt {
   0% {
@@ -314,4 +383,11 @@ body {
   .logo {
     font-size: 36px;
   }
+}
+
+.container2-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
