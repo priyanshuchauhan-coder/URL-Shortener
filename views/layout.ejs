@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= title || 'Slinkify' %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container"></div>
+
+  <!-- Navbar -->
+  <%- include('partials/navbar') %>
+
+  <!-- Page Content -->
+  <main class="p-4">
+    <%- body %>
+  </main>
+  <script>
+    async function shortenUrl() {
+      const longUrlInput = document.getElementById("longUrl");
+      const resultDiv = document.getElementById("result");
+      const shortenedLink = document.getElementById("shortenedLink");
+      const longUrl = longUrlInput.value;
+      resultDiv.style.display = "block";
+
+      if (longUrl) {
+        const response = await fetch("/shorten", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ longUrl }),
+        });
+
+        const data = await response.json();
+
+        if (data.shortUrl) {
+          shortenedLink.textContent = data.shortUrl;
+          shortenedLink.href = data.shortUrl;
+          resultDiv.classList.remove("hidden");
+          longUrlInput.value = "";
+        } else {
+          alert(data.error || "An error occurred while shortening the URL.");
+        }
+      } else {
+        alert("Please enter a URL to shorten.");
+      }
+    }
+
+    function copyToClipboard() {
+      const shortenedLink =
+        document.getElementById("shortenedLink").textContent;
+      navigator.clipboard
+        .writeText(shortenedLink)
+        .then(() => alert("Copied to clipboard!"))
+        .catch((err) => alert("Failed to copy: " + err));
+    }
+
+    document.querySelector('.check-btn').addEventListener('click', function () {
+      const url = document.querySelector('.url-input').value.trim();
+      const resultBox = document.querySelector('.url-result');
+      const clickCount = document.querySelector('.click-count');
+      const createdTime = document.querySelector('.created-time');
+      const mappedUrl = document.querySelector('.mapped-url');
+  
+      if (!url) {
+        alert("Please enter a shortened URL.");
+        return;
+      }
+  
+      // Example mock response — replace with real fetch call
+      resultBox.classList.remove('hidden');
+      clickCount.textContent = '1,234';
+      createdTime.textContent = '2025-05-01 14:32:00';
+      mappedUrl.textContent = 'https://example.com/long-original-page';
+      mappedUrl.href = 'https://example.com/long-original-page';
+  
+      // In a real app, you might do:
+      // fetch(`/api/stats?shortUrl=${encodeURIComponent(url)}`)
+      //   .then(res => res.json())
+      //   .then(data => {
+      //     clickCount.textContent = data.clicks;
+      //     createdTime.textContent = data.createdAt;
+      //     mappedUrl.textContent = data.originalUrl;
+      //     mappedUrl.href = data.originalUrl;
+      //     resultBox.classList.remove('hidden');
+      //   })
+      //   .catch(() => alert("Failed to fetch stats."));
+    });
+  </script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
