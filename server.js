@@ -10,13 +10,28 @@ const port = 3000;
 const urlDatabase = {};
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json())
+//   template
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+const expressLayouts = require('express-ejs-layouts');
+app.use(expressLayouts);
+app.set('layout', 'layout');
 
 // Serve frontend
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// });
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.render('index', { title: 'Home' });
 });
+app.get('/dashboard', (req, res) => {
+  res.render('dashboard', { title: 'Dashboard' });
+});
+
 
 // Handle form submission
 app.post('/shorten', (req, res) => {
